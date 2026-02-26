@@ -1,0 +1,44 @@
+#######################################
+# Syntax Coloring DFRobot_PeristalticPump_V2
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+DFRobot_PeristalticPump_V2	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+begin	KEYWORD2
+updatePumpStatus	KEYWORD2
+stopPump	KEYWORD2
+setPumpRun	KEYWORD2
+calPump	KEYWORD2
+timerPump	KEYWORD2
+volumePump	KEYWORD2
+setPumpRunDoneCallback	KEYWORD2
+setTimerPumpCallback	KEYWORD2
+setVolumePumpCallback	KEYWORD2
+setCalPumpEventCallback	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+FLOW_RATE_ADDRESS	LITERAL1
+PUMP_SPEED_ADDRESS	LITERAL1
+CALIBRATION_TIME	LITERAL1
+STOP_SERVO	LITERAL1
+eTaskNone	LITERAL1
+eTaskSetPumpRun	LITERAL1
+eTaskTimerPump	LITERAL1
+eTaskVolumePump	LITERAL1
+eCalEventWaitSetCal	LITERAL1
+eCalEventInvalidSetCal	LITERAL1
+eCalEventStart	LITERAL1
+eCalEventCountdown	LITERAL1
+eCalEventStop	LITERAL1
+eCalEventWaitVolume	LITERAL1
+eCalEventInvalidVolume	LITERAL1
+eCalEventWriteFailed	LITERAL1
+eCalEventDone	LITERAL1
