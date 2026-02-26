@@ -14,11 +14,11 @@
 #include <Arduino.h>
 
 #if defined(ESP32)
-#include "ESP32Servo.h"
+#include <ESP32Servo.h>
 #else
-#include "Servo.h"
+#include <Servo.h>
 #endif
-#include "EEPROM.h"
+#include <EEPROM.h>
 
 #define FLOW_RATE_ADDRESS  0x24    //EEPROM address for flowrate, for more pump need to add more address.
 #define PUMP_SPEED_ADDRESS 0x28    //EEPROM address for speed, for more pump need to add more address.
