@@ -1,7 +1,7 @@
 # DFRobot_PeristalticPump_V2
 - [英文版](./README.md)
 
-Gravity 蠕动泵 Arduino 库，兼容 Arduino 与 ESP32 平台。
+DFRobot 蠕动泵 Arduino 库，兼容 Arduino 与 ESP32 平台。
 
 ![svg]
 

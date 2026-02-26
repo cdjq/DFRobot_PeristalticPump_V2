@@ -1,7 +1,7 @@
 # DFRobot_PeristalticPump_V2
 - [中文版](./README_CN.md)
 
-Gravity peristaltic pump Arduino library, compatible with Arduino and ESP32 platforms.
+DFRobot peristaltic pump Arduino library, compatible with Arduino and ESP32 platforms.
 
 ![svg]
 
