@@ -6,7 +6,7 @@
  * @author JiaLi(zhixin.liu@dfrobot.com)
  * @version V1.0
  * @date 2026-02-10
- * @url https://github.com/DFRobot/DFRobot_PeristalticPump_V2
+ * @url https://github.com/cdjq/DFRobot_PeristalticPump_V2
  */
 
 #include "DFRobot_PeristalticPump_V2.h"
@@ -59,8 +59,8 @@ void loop()
   */
   if (volumePumpFlag) {
     volumePumpFlag = 0;
-    Serial.println(F("Start: volumePump 1000 ml"));
-    if (pump.volumePump(1000, &runTime)) {
+    Serial.println(F("Start: volumePump 100 ml"));
+    if (pump.volumePump(100, &runTime)) {
       Serial.print(F("Expected run time(s): "));
       Serial.println(runTime, 2);
     } else {

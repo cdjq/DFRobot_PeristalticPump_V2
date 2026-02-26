@@ -25,7 +25,7 @@ Gravity 蠕动泵 Arduino 库，兼容 Arduino 与 ESP32 平台。
 - 支持基于流量的定量出液
 
 ## 库安装
-使用前下载库文件（https://github.com/DFRobot/DFRobot_PeristalticPump_V2）粘贴到\Arduino\libraries目录下，然后打开examples文件夹，运行该文件夹下的demo。如果你需要使用任何ESP32 驱动该设备，请在库管理中搜索下载ESP32Servo。
+使用前下载库文件（https://github.com/cdjq/DFRobot_PeristalticPump_V2）粘贴到\Arduino\libraries目录下，然后打开examples文件夹，运行该文件夹下的demo。如果你需要使用任何ESP32 驱动该设备，请在库管理中搜索下载ESP32Servo。
 
 ## 方法
 ```cpp

@@ -6,7 +6,7 @@
  * @author JiaLi(zhixin.liu@dfrobot.com)
  * @version V1.0
  * @date 2026-02-10
- * @url https://github.com/DFRobot/DFRobot_PeristalticPump_V2
+ * @url https://github.com/cdjq/DFRobot_PeristalticPump_V2
  */
 
 #include "DFRobot_PeristalticPump_V2.h"

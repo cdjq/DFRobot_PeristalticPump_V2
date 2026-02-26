@@ -28,7 +28,7 @@ Gravity peristaltic pump Arduino library, compatible with Arduino and ESP32 plat
 - Supports fixed-volume pumping based on calibrated flow rate
 
 ## Library Installation
-Before using, download the library file (https://github.com/DFRobot/DFRobot_PeristalticPump_V2) and paste it into the \Arduino\libraries directory. Then open the examples folder and run the demo in that folder. If you need to use any ESP32 to drive the device, search for and download ESP32Servo in the Library Manager.
+Before using, download the library file (https://github.com/cdjq/DFRobot_PeristalticPump_V2) and paste it into the \Arduino\libraries directory. Then open the examples folder and run the demo in that folder. If you need to use any ESP32 to drive the device, search for and download ESP32Servo in the Library Manager.
 
 ## Methods
 ```cpp

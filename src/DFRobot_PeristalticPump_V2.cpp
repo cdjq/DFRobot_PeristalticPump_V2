@@ -6,7 +6,7 @@
  * @author JiaLi(zhixin.liu@dfrobot.com)
  * @version V1.0
  * @date 2026-02-10
- * @url https://github.com/DFRobot/DFRobot_PeristalticPump_V2
+ * @url https://github.com/cdjq/DFRobot_PeristalticPump_V2
  */
 
 #include "DFRobot_PeristalticPump_V2.h"
@@ -301,7 +301,7 @@ bool DFRobot_PeristalticPump_V2::timerPump(unsigned long time, float *volume)
   *volume = this->_flowRate * ((float)time / 1000.0f);
   //Serial.println(String(F("Pumped volume(ml): ")) + String(*volume, 4));
 
-  if (!this->startTask(eTaskTimerPump, 0, time, this->_flowRate, *volume)) {
+  if (!this->startTask(eTaskTimerPump, 180, time, this->_flowRate, *volume)) {
     *volume = 0.0f;
     return false;
   }
@@ -334,7 +334,7 @@ bool DFRobot_PeristalticPump_V2::volumePump(float volume, float *runTime)
   }
 
   *runTime = runTimeMs / 1000.0f;
-  if (!this->startTask(eTaskVolumePump, 0, (unsigned long)runTimeMs, this->_flowRate, volume)) {
+  if (!this->startTask(eTaskVolumePump, 180, (unsigned long)runTimeMs, this->_flowRate, volume)) {
     *runTime = 0.0f;
     return false;
   }
