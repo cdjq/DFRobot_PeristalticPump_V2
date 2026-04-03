@@ -7,7 +7,7 @@ DFRobot 蠕动泵 Arduino 库，兼容 Arduino 与 ESP32 平台。
 
 ## 产品链接（www.dfrobot.com）
 
-    SKU：SEN0
+    SKU：SEN1261
 
 ## 目录
 
@@ -25,7 +25,7 @@ DFRobot 蠕动泵 Arduino 库，兼容 Arduino 与 ESP32 平台。
 - 支持基于流量的定量出液
 
 ## 库安装
-使用前下载库文件（https://github.com/cdjq/DFRobot_PeristalticPump_V2）粘贴到\Arduino\libraries目录下，然后打开examples文件夹，运行该文件夹下的demo。如果你需要使用任何ESP32 驱动该设备，请在库管理中搜索下载ESP32Servo。
+使用前下载库文件（https://github.com/DFRobot/DFRobot_PeristalticPump_V2）粘贴到\Arduino\libraries目录下，然后打开examples文件夹，运行该文件夹下的demo。如果你需要使用任何ESP32 驱动该设备，请在库管理中搜索下载ESP32Servo。
 
 ## 方法
 ```cpp
@@ -111,6 +111,64 @@ bool timerPump(unsigned long time, float *volume);
  * @n     5. 这是非阻塞接口，必须在 loop() 中持续调用 updatePumpStatus()。
 */
 bool volumePump(float volume, float *runTime);
+
+/**
+ * @fn setPumpRunDoneCallback
+ * @brief 注册 setPumpRun 任务完成回调。
+ * @param cb: 回调函数指针。
+ * @n     传入 NULL 可关闭回调。
+ * @return 无
+ * @n     注意事项：
+ * @n     1. setPumpRun 任务结束（正常超时或 stopPump() 停止）时触发。
+ * @n     2. 若 setPumpRun() 启动失败，则不会触发回调。
+*/
+void setPumpRunDoneCallback(PumpRunDoneCallback cb);
+
+/**
+ * @fn setTimerPumpCallback
+ * @brief 注册 timerPump 任务进度回调。
+ * @param cb: 回调函数指针。
+ * @n     原型：void cb(float volume, bool finished)
+ * @n     volume：当前已泵液体积（ml）
+ * @n     finished：运行中为 false，任务结束时为 true
+ * @param periodMs: 回调周期（单位：毫秒），默认 50。
+ * @return 无
+ * @n     注意事项：
+ * @n     1. 若 periodMs 为 0，会被强制修正为 1。
+ * @n     2. 传入 NULL 可关闭回调。
+ * @n     3. 仅对 timerPump() 任务生效。
+*/
+void setTimerPumpCallback(TimerPumpCallback cb, unsigned long periodMs = 50);
+
+/**
+ * @fn setVolumePumpCallback
+ * @brief 注册 volumePump 任务进度回调。
+ * @param cb: 回调函数指针。
+ * @n     原型：void cb(float volume, bool finished)
+ * @n     volume：当前已泵液体积（ml）
+ * @n     finished：运行中为 false，任务结束时为 true
+ * @param periodMs: 回调周期（单位：毫秒），默认 50。
+ * @return 无
+ * @n     注意事项：
+ * @n     1. 若 periodMs 为 0，会被强制修正为 1。
+ * @n     2. 传入 NULL 可关闭回调。
+ * @n     3. 仅对 volumePump() 任务生效。
+*/
+void setVolumePumpCallback(VolumePumpCallback cb, unsigned long periodMs = 50);
+
+/**
+ * @fn setCalPumpEventCallback
+ * @brief 注册 calPump 流程事件回调。
+ * @param cb: 回调函数指针。
+ * @n     原型：void cb(eCalPumpEvent_t event, float value)
+ * @n     event：当前校准事件
+ * @n     value：事件对应的值（倒计时/时间/flowRate，取决于事件）
+ * @return 无
+ * @n     注意事项：
+ * @n     1. 用于输出 calPump() 的提示、进度和结果。
+ * @n     2. 传入 NULL 可关闭回调。
+*/
+void setCalPumpEventCallback(CalPumpEventCallback cb);
 ```
 
 ## 兼容性

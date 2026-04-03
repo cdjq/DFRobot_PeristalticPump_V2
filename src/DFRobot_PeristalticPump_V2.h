@@ -6,7 +6,7 @@
  * @author JiaLi(zhixin.liu@dfrobot.com)
  * @version V1.0
  * @date 2026-02-10
- * @url https://github.com/cdjq/DFRobot_PeristalticPump_V2
+ * @url https://github.com/DFRobot/DFRobot_PeristalticPump_V2
  */
 #ifndef __DFROBOT_PERISTALTICPUMP_V2_H__
 #define __DFROBOT_PERISTALTICPUMP_V2_H__
@@ -18,7 +18,6 @@
 #else
 #include <Servo.h>
 #endif
-#include <EEPROM.h>
 
 #define FLOW_RATE_ADDRESS  0x24    //EEPROM address for flowrate, for more pump need to add more address.
 #define PUMP_SPEED_ADDRESS 0x28    //EEPROM address for speed, for more pump need to add more address.
@@ -148,9 +147,62 @@ public:
    */
   bool volumePump(float volume, float *runTime);
 
+  /**
+   * @fn setPumpRunDoneCallback
+   * @brief Register callback for setPumpRun task completion.
+   * @param cb: Callback function pointer.
+   * @n     Pass NULL to disable callback.
+   * @return None
+   * @n     Notes:
+   * @n     1. Triggered when a setPumpRun task finishes (normal timeout or stopPump()).
+   * @n     2. If setPumpRun() fails to start, callback will not be triggered.
+   */
   void setPumpRunDoneCallback(PumpRunDoneCallback cb);
+
+  /**
+   * @fn setTimerPumpCallback
+   * @brief Register progress callback for timerPump task.
+   * @param cb: Callback function pointer.
+   * @n     Prototype: void cb(float volume, bool finished)
+   * @n     volume: current pumped volume (ml)
+   * @n     finished: false during running, true when task finishes
+   * @param periodMs: Callback period (unit: ms), default 50.
+   * @return None
+   * @n     Notes:
+   * @n     1. If periodMs is 0, it will be forced to 1.
+   * @n     2. Pass NULL to disable callback.
+   * @n     3. Effective only for timerPump() task.
+   */
   void setTimerPumpCallback(TimerPumpCallback cb, unsigned long periodMs = 50);
+
+  /**
+   * @fn setVolumePumpCallback
+   * @brief Register progress callback for volumePump task.
+   * @param cb: Callback function pointer.
+   * @n     Prototype: void cb(float volume, bool finished)
+   * @n     volume: current pumped volume (ml)
+   * @n     finished: false during running, true when task finishes
+   * @param periodMs: Callback period (unit: ms), default 50.
+   * @return None
+   * @n     Notes:
+   * @n     1. If periodMs is 0, it will be forced to 1.
+   * @n     2. Pass NULL to disable callback.
+   * @n     3. Effective only for volumePump() task.
+   */
   void setVolumePumpCallback(VolumePumpCallback cb, unsigned long periodMs = 50);
+
+  /**
+   * @fn setCalPumpEventCallback
+   * @brief Register event callback for calPump procedure.
+   * @param cb: Callback function pointer.
+   * @n     Prototype: void cb(eCalPumpEvent_t event, float value)
+   * @n     event: current calibration event
+   * @n     value: event value (countdown/time/flowRate, depending on event)
+   * @return None
+   * @n     Notes:
+   * @n     1. Used to output prompts/progress/results for calPump().
+   * @n     2. Pass NULL to disable callback.
+   */
   void setCalPumpEventCallback(CalPumpEventCallback cb);
 
 private:
