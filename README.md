@@ -7,7 +7,7 @@ DFRobot peristaltic pump Arduino library, compatible with Arduino and ESP32 plat
 
 ## Product Link (www.dfrobot.com)
 
-    SKU: SEN1261
+    SKU: DFR1261
 
 ## Table of Contents
 
@@ -81,6 +81,8 @@ bool setPumpRun(uint8_t speed, unsigned long runTime);
  * @n     4. Input the measured pumped volume (unit: ml).
  * @n     5. flowRate = volume / 15s, and this value is used by timerPump() and volumePump().
  * @n     6. This function does not print by itself. Register setCalPumpEventCallback() for prompts/logs.
+ * @n     7. Before calibration, prime the tubing by running setPumpRun.ino until it is fully filled with water.
+ * @n     8. Skipping the priming step can lead to inaccurate calibration results.
 */
 bool calPump();
 

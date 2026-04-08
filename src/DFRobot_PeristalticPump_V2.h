@@ -113,6 +113,8 @@ public:
    * @n     4. Input the measured pumped volume (unit: ml).
    * @n     5. flowRate = volume / 15s, and this value is used by timerPump() and volumePump().
    * @n     6. This function does not print by itself. Register setCalPumpEventCallback() for prompts/logs.
+   * @n     7. Before calibration, prime the tubing by running setPumpRun.ino until it is fully filled with water.
+   * @n     8. Skipping the priming step can lead to inaccurate calibration results.
    */
   bool calPump(void);
 

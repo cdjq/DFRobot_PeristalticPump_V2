@@ -7,7 +7,7 @@ DFRobot 蠕动泵 Arduino 库，兼容 Arduino 与 ESP32 平台。
 
 ## 产品链接（www.dfrobot.com）
 
-    SKU：SEN1261
+    SKU：DFR1261
 
 ## 目录
 
@@ -78,6 +78,8 @@ bool setPumpRun(uint8_t speed, unsigned long runTime);
  * @n     4. 输入实测的泵出体积（单位：ml）。
  * @n     5. flowRate = volume / 15s，timerPump() 和 volumePump() 会使用该值。
  * @n     6. 本函数内部不直接打印提示；可通过 setCalPumpEventCallback() 输出提示信息。
+ * @n     7. 开始校准前，请先运行 setPumpRun.ino 对管路进行灌液，确保管路内已充满液体。
+ * @n     8. 跳过灌液步骤会导致校准结果不准确。
 */
 bool calPump();
 

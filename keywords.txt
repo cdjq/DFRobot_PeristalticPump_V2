@@ -5,7 +5,6 @@
 #######################################
 # Datatypes (KEYWORD1)
 #######################################
-DFRobot_PeristalticPump_V2	KEYWORD1
 
 #######################################
 # Methods and Functions (KEYWORD2)

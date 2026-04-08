@@ -68,17 +68,17 @@ void setup()
 
 void loop()
 {
-  static bool doneFlag = false;
-  if (doneFlag) {
-    while (1) {
-      delay(1000);
-    }
-  }
+  /**
+   * note:
+   * 1. Prime the tubing first: run setPumpRun.ino until the tubing is fully filled with water.
+   * 2. Skipping priming can lead to inaccurate calibration results.
+  */
 
   if (pump.calPump()) {
     Serial.println(F("Calibration success, pump flow rate is stored in EEPROM."));
   } else {
     Serial.println(F("Calibration failed."));
   }
-  doneFlag = true;
+
+  while(1);
 }

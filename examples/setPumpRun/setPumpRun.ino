@@ -65,5 +65,5 @@ void loop()
       Serial.println(F("The task of setting the water pump to operate failed!"));
     }
   }
-  delay(10);
+  
 }
