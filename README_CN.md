@@ -64,6 +64,7 @@ void stopPump(void);
  * @n     1. 这是非阻塞接口，必须在 loop() 中持续调用 updatePumpStatus()。
  * @n     2. 若当前已有任务在运行，本接口会返回 false。
  * @n     3. 可通过 stopPump() 强制停止当前任务。
+ * @n     4. 调用这个API时，尽力不要使用delay()或其它阻塞时间较长的函数，否则时序会被改变。
 */
 bool setPumpRun(uint8_t speed, unsigned long runTime);
 
@@ -95,6 +96,7 @@ bool calPump();
  * @n     2. 需要有效的校准数据（flowRate）。
  * @n     3. 若当前已有任务在运行，本接口会返回 false。
  * @n     4. 这是非阻塞接口，必须在 loop() 中持续调用 updatePumpStatus()。
+ * @n     5. 调用这个API时，尽力不要使用delay()或其它阻塞时间较长的函数，否则时序会被改变。
 */
 bool timerPump(unsigned long time, float *volume);
 
@@ -111,6 +113,7 @@ bool timerPump(unsigned long time, float *volume);
  * @n     3. 需要有效的校准数据（flowRate）。
  * @n     4. 若当前已有任务在运行，本接口会返回 false。
  * @n     5. 这是非阻塞接口，必须在 loop() 中持续调用 updatePumpStatus()。
+ * @n     6. 调用这个API时，尽力不要使用delay()或其它阻塞时间较长的函数，否则时序会被改变。
 */
 bool volumePump(float volume, float *runTime);
 

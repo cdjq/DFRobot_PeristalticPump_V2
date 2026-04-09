@@ -67,6 +67,7 @@ void stopPump(void);
  * @n     1. Non-blocking API. You must call updatePumpStatus() repeatedly in loop().
  * @n     2. If a task is already running, this API returns false.
  * @n     3. You can force stop by calling stopPump().
+ * @n     4. Avoid using delay() or other long blocking functions when calling this API, or timing may be affected.
 */
 bool setPumpRun(uint8_t speed, unsigned long runTime);
 
@@ -98,6 +99,7 @@ bool calPump();
  * @n     2. Calibration data (flowRate) must be valid.
  * @n     3. If another task is running, this API returns false.
  * @n     4. Non-blocking API. You must call updatePumpStatus() repeatedly in loop().
+ * @n     5. Avoid using delay() or other long blocking functions when calling this API, or timing may be affected.
 */
 bool timerPump(unsigned long time, float *volume);
 
@@ -114,6 +116,7 @@ bool timerPump(unsigned long time, float *volume);
  * @n     3. Calibration data (flowRate) must be valid.
  * @n     4. If another task is running, this API returns false.
  * @n     5. Non-blocking API. You must call updatePumpStatus() repeatedly in loop().
+ * @n     6. Avoid using delay() or other long blocking functions when calling this API, or timing may be affected.
 */
 bool volumePump(float volume, float *runTime);
 

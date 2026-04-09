@@ -24,7 +24,6 @@
 #define CALIBRATION_TIME   15      //when Calibration pump running time, unit secend
 
 #define STOP_SERVO 90    //servo stop position
-#define RUN_TIME_COMPENSATION_MS 40  //fixed run-time compensation in ms
 
 typedef enum {
   eTaskNone = 0,
@@ -100,6 +99,7 @@ public:
    * @n     1. Non-blocking API. You must call updatePumpStatus() repeatedly in loop().
    * @n     2. If a task is already running, this API returns false.
    * @n     3. You can force stop by calling stopPump().
+   * @n     4. Avoid using delay() or other long blocking functions when calling this API, or timing may be affected.
    */
   bool setPumpRun(uint8_t speed, unsigned long runTime);
 
@@ -131,6 +131,7 @@ public:
    * @n     2. Calibration data (flowRate) must be valid.
    * @n     3. If another task is running, this API returns false.
    * @n     4. Non-blocking API. You must call updatePumpStatus() repeatedly in loop().
+   * @n     5. Avoid using delay() or other long blocking functions when calling this API, or timing may be affected.
    */
   bool timerPump(unsigned long time, float *volume);
 
@@ -147,6 +148,7 @@ public:
    * @n     3. Calibration data (flowRate) must be valid.
    * @n     4. If another task is running, this API returns false.
    * @n     5. Non-blocking API. You must call updatePumpStatus() repeatedly in loop().
+   * @n     6. Avoid using delay() or other long blocking functions when calling this API, or timing may be affected.
    */
   bool volumePump(float volume, float *runTime);
 
@@ -226,7 +228,6 @@ private:
   float         calcTaskVolume(unsigned long elapsedMs) const;
   void          finishTask(ePumpTaskType_t finishedTask, float finalVolume);
   void          clearTask(void);
-  unsigned long applyRunTimeCompensation(unsigned long durationMs) const;
 
   int                  _pin;
   float                _flowRate;
