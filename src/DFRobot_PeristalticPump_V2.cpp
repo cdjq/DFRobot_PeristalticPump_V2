@@ -133,6 +133,15 @@ void DFRobot_PeristalticPump_V2::clearTask(void)
   this->_task.targetVolume     = 0.0f;
 }
 
+unsigned long DFRobot_PeristalticPump_V2::applyRunTimeCompensation(unsigned long durationMs) const
+{
+  long compensated = (long)durationMs + (long)RUN_TIME_COMPENSATION_MS;
+  if (compensated < 0) {
+    compensated = 0;
+  }
+  return (unsigned long)compensated;
+}
+
 void DFRobot_PeristalticPump_V2::updatePumpStatus(void)
 {
   if (!this->isTaskRunning()) {
@@ -182,7 +191,7 @@ void DFRobot_PeristalticPump_V2::begin(void)
 
 bool DFRobot_PeristalticPump_V2::setPumpRun(uint8_t speed, unsigned long runTime)
 {
-  if (this->startTask(eTaskSetPumpRun, speed, runTime, 0.0f, 0.0f)) {
+  if (this->startTask(eTaskSetPumpRun, speed, this->applyRunTimeCompensation(runTime), 0.0f, 0.0f)) {
     this->_setTaskCount++;
     return true;
   }
@@ -302,7 +311,7 @@ bool DFRobot_PeristalticPump_V2::timerPump(unsigned long time, float *volume)
   *volume = this->_flowRate * ((float)time / 1000.0f);
   //Serial.println(String(F("Pumped volume(ml): ")) + String(*volume, 4));
 
-  if (!this->startTask(eTaskTimerPump, 180, time, this->_flowRate, *volume)) {
+  if (!this->startTask(eTaskTimerPump, 180, this->applyRunTimeCompensation(time), this->_flowRate, *volume)) {
     *volume = 0.0f;
     return false;
   }
@@ -335,7 +344,7 @@ bool DFRobot_PeristalticPump_V2::volumePump(float volume, float *runTime)
   }
 
   *runTime = runTimeMs / 1000.0f;
-  if (!this->startTask(eTaskVolumePump, 180, (unsigned long)runTimeMs, this->_flowRate, volume)) {
+  if (!this->startTask(eTaskVolumePump, 180, this->applyRunTimeCompensation((unsigned long)runTimeMs), this->_flowRate, volume)) {
     *runTime = 0.0f;
     return false;
   }

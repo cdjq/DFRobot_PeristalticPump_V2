@@ -24,6 +24,7 @@
 #define CALIBRATION_TIME   15      //when Calibration pump running time, unit secend
 
 #define STOP_SERVO 90    //servo stop position
+#define RUN_TIME_COMPENSATION_MS 40  //fixed run-time compensation in ms
 
 typedef enum {
   eTaskNone = 0,
@@ -225,6 +226,7 @@ private:
   float         calcTaskVolume(unsigned long elapsedMs) const;
   void          finishTask(ePumpTaskType_t finishedTask, float finalVolume);
   void          clearTask(void);
+  unsigned long applyRunTimeCompensation(unsigned long durationMs) const;
 
   int                  _pin;
   float                _flowRate;
