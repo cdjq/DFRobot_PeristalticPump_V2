@@ -23,7 +23,7 @@
 #define PUMP_SPEED_ADDRESS 0x28    //EEPROM address for speed, for more pump need to add more address.
 #define CALIBRATION_TIME   15      //when Calibration pump running time, unit secend
 
-#define STOP_SERVO 90
+#define STOP_SERVO 90 
 
 typedef enum {
   eTaskNone = 0,
